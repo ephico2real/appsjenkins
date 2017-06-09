@@ -1,1 +1,1 @@
-# appsjenkins
+# appsjenkins is a sample jenkins masters server deployed on tectonic kubernetes clusters. The storage was automated with storageClass and claimed created directly. I also introduced an ingress with NodePort option. I then pointed the ingress name for the app to my default tectonic URL in aws Route53 domain. We thus saved money and avoided using a seperate load balancer for each app exposed to the internet.
