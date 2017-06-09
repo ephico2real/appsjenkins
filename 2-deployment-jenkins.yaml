@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: "jenkins1"
+  namespace: "exerciselabs"
+spec:
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: "jenkins1"
+    spec:
+      securityContext:
+        fsGroup: 1000
+      containers:
+      - image: "jenkinsci/jenkins"
+        imagePullPolicy: IfNotPresent
+        name: "jenkins1"
+        ports:
+        - containerPort: 8080
+        - containerPort: 50000
+        volumeMounts:
+          - name: jenkins-home-mount
+            mountPath: /var/jenkins_home
+      volumes:
+        - name: jenkins-home-mount
+          persistentVolumeClaim:
+            claimName: jenkins-pv-claim 
